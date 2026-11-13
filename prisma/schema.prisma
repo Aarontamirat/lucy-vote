@@ -1,0 +1,247 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Shareholder {
+  id         String   @id
+  name       String
+  nameAm     String?
+  phone      String?
+  address    String?
+  shareValue Decimal  @db.Decimal(30, 6) 
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  attendances   Attendance[]
+  representedIn Representation[]
+  shareholderID Representative[]
+  nomineeID     Nominee[]
+
+  @@index([name])
+  @@index([phone])
+}
+
+model Meeting {
+  id            String        @id @default(uuid())
+  title         String
+  date          DateTime
+  location      String?
+  quorumPct     Float? 
+  status        MeetingStatus @default(DRAFT)
+  firstPassers  Int?
+  secondPassers Int?
+  winnerCount   Int? // Required for standard elections; grouped elections use both passer limits.
+  snapshotTotalShares Decimal?
+  snapshotTotalHolders Int?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  attendances Attendance[]
+  nominees    Nominee[]
+  meeting     Representation[]
+  meetings    Vote[]
+  userAssignments MeetingAssignment[]
+}
+
+enum MeetingStatus {
+  DRAFT
+  OPEN
+  CLOSED
+  VOTINGOPEN
+}
+
+model Representative {
+  id            String       @id @default(uuid())
+  name          String
+  phone         String?
+  // if this representative *is* a shareholder, link (optional)
+  shareholderId String?
+  registeredForMeetingId String?
+  shareholder   Shareholder? @relation(fields: [shareholderId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  representations Representation[]
+  representedBy   Attendance[]
+  @@index([registeredForMeetingId])
+}
+
+model Representation {
+  // Represents that `representative` represents `shareholder` for `meeting`
+  id               Int    @id @default(autoincrement())
+  meetingId        String
+  representativeId String
+  shareholderId    String
+
+  meeting        Meeting        @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  representative Representative @relation(fields: [representativeId], references: [id], onDelete: Cascade)
+  shareholder    Shareholder    @relation(fields: [shareholderId], references: [id], onDelete: Cascade)
+
+  @@unique([meetingId, representativeId, shareholderId])
+}
+
+model Attendance {
+  id                 String   @id @default(cuid())
+  meetingId          String
+  shareholderId      String
+  representedById    String? // another shareholder
+  representativeName String? // external rep
+
+  // SNAPSHOT FIELDS
+  snapshotName String
+  snapshotNameAm String?
+  snapshotPhone String?
+  snapshotAddress String?
+  snapshotShareValue Decimal @db.Decimal(30, 6)
+
+
+  createdAt          DateTime @default(now())
+
+  meeting       Meeting         @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  shareholder   Shareholder     @relation(fields: [shareholderId], references: [id], onDelete: Cascade)
+  representedBy Representative? @relation(fields: [representedById], references: [id], onDelete: Cascade)
+
+  @@unique([meetingId, shareholderId]) // only one attendance row per shareholder per meeting
+}
+
+model Nominee {
+  id            String   @id @default(cuid())
+  name          String
+  nameAm        String?
+  type          String
+  description   String?
+  meetingId     String
+  shareholderId String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  shareholder Shareholder @relation(fields: [shareholderId], references: [id], onDelete: Cascade)
+  meeting     Meeting     @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  votes       Vote[]
+}
+
+model Vote {
+  id        String   @id @default(cuid())
+  meetingId String
+  nomineeId String
+  voterId   String // shareholderId; historical representative IDs are retained until explicitly reversed
+  weight    Float
+  createdAt DateTime @default(now())
+
+  // SNAPSHOT FIELDS
+  snapshotVoterName String
+  snapshotVoterShareValue Decimal @db.Decimal(30, 6)
+
+  meetings Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  nominee  Nominee @relation(fields: [nomineeId], references: [id], onDelete: Cascade)
+
+  @@unique([meetingId, nomineeId, voterId]) // a shareholder can vote at most once per nominee per meeting
+}
+
+enum AccessScope {
+  ALL
+  ASSIGNED
+}
+
+enum PermissionEffect {
+  GRANT
+  DENY
+}
+
+model User {
+  id                 String @id @default(uuid())
+  email              String @unique
+  name               String
+  passwordHash       String @db.VarChar(255)
+  active             Boolean @default(true)
+  mustChangePassword Boolean @default(true)
+  roleId             String
+  accessScope        AccessScope @default(ASSIGNED)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  role               Role @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  overrides          UserPermission[]
+  meetingAssignments MeetingAssignment[]
+  sessions           Session[]
+}
+
+model Role {
+  id          String @id @default(uuid())
+  name        String @unique
+  description String @db.VarChar(500)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  users       User[]
+  permissions RolePermission[]
+}
+
+model RolePermission {
+  roleId     String
+  permission String @db.VarChar(100)
+  role       Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  @@id([roleId, permission])
+}
+
+model UserPermission {
+  userId     String
+  permission String @db.VarChar(100)
+  effect     PermissionEffect
+  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@id([userId, permission])
+}
+
+model MeetingAssignment {
+  userId    String
+  meetingId String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  @@id([userId, meetingId])
+  @@index([meetingId])
+}
+
+model Session {
+  id         String @id @default(uuid())
+  tokenHash  String @unique @db.VarChar(64)
+  userId     String
+  expiresAt  DateTime
+  lastSeenAt DateTime @default(now())
+  verifiedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model LoginThrottle {
+  key        String @id @db.VarChar(64)
+  attempts   Int @default(0)
+  resetAt    DateTime
+  @@index([resetAt])
+}
+
+// One row serializes security configuration changes, including last-admin protection.
+model SecurityLock {
+  id Int @id
+}
+
+// Actor and resource IDs deliberately survive user, nominee, and meeting deletion.
+model AuditLog {
+  id         String @id @default(uuid())
+  actorId    String?
+  actorName  String?
+  action     String @db.VarChar(100)
+  resource   String @db.VarChar(500)
+  meetingId  String?
+  status     String @db.VarChar(30)
+  details    Json?
+  createdAt  DateTime @default(now())
+  @@index([createdAt])
+  @@index([actorId, createdAt])
+  @@index([meetingId, createdAt])
+}

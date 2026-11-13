@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/AaronT.LUCY/Desktop/voting-system/Latest/voting-app-latest/app/access-denied/page.tsx"],"sourcesContent":["import Link from \"next/link\";\nexport default function AccessDeniedPage() {\n  return <main className=\"mx-auto max-w-lg p-12 text-center\"><h1 className=\"text-2xl font-bold\">Access denied</h1><p className=\"my-4\">Your account does not have permission to access this page. Contact your Super Admin if you need access.</p><Link className=\"underline\" href=\"/\">Return home</Link></main>;\n}\n"],"names":[],"mappings":";;;;;AAAA;;;AACe,SAAS;IACtB,qBAAO,8OAAC;QAAK,WAAU;;0BAAoC,8OAAC;gBAAG,WAAU;0BAAqB;;;;;;0BAAkB,8OAAC;gBAAE,WAAU;0BAAO;;;;;;0BAA2G,8OAAC,uKAAI;gBAAC,WAAU;gBAAY,MAAK;0BAAI;;;;;;;;;;;;AACtR","debugId":null}}]
+}

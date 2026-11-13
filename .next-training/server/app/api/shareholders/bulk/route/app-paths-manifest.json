@@ -1,0 +1,3 @@
+{
+  "/api/shareholders/bulk/route": "app/api/shareholders/bulk/route.js"
+}

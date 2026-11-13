@@ -1,0 +1,3 @@
+{
+  "/api/meetings/[id]/votingopen/route": "app/api/meetings/[id]/votingopen/route.js"
+}

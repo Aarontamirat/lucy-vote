@@ -1,0 +1,116 @@
+[
+  {
+    "id": "super-admin",
+    "name": "Super Admin",
+    "description": "Manage users, roles, permissions, and all system functions.",
+    "permissions": [
+      "shareholders.view",
+      "shareholders.lookup",
+      "shareholders.create",
+      "shareholders.edit",
+      "shareholders.import",
+      "shareholders.delete",
+      "shareholders.deleteAll",
+      "meetings.view",
+      "meetings.create",
+      "meetings.edit",
+      "meetings.delete",
+      "meetings.open",
+      "meetings.openVoting",
+      "meetings.close",
+      "nominees.view",
+      "nominees.manage",
+      "attendance.view",
+      "attendance.register",
+      "attendance.remove",
+      "votes.lookup",
+      "votes.record",
+      "votes.reverse",
+      "cards.print",
+      "results.view",
+      "reports.attendance",
+      "reports.voting",
+      "projection.view",
+      "audit.view"
+    ]
+  },
+  {
+    "id": "election-manager",
+    "name": "Election Manager",
+    "description": "Configure and run assigned elections.",
+    "permissions": [
+      "meetings.view",
+      "meetings.create",
+      "meetings.edit",
+      "meetings.open",
+      "meetings.openVoting",
+      "meetings.close",
+      "shareholders.lookup",
+      "nominees.view",
+      "nominees.manage",
+      "attendance.view",
+      "cards.print",
+      "results.view",
+      "reports.attendance",
+      "reports.voting",
+      "projection.view"
+    ]
+  },
+  {
+    "id": "registry-clerk",
+    "name": "Registry Clerk",
+    "description": "Maintain the shareholder registry.",
+    "permissions": [
+      "shareholders.view",
+      "shareholders.lookup",
+      "shareholders.create",
+      "shareholders.edit",
+      "shareholders.import"
+    ]
+  },
+  {
+    "id": "attendance-officer",
+    "name": "Attendance Officer",
+    "description": "Register attendance and representatives for assigned meetings.",
+    "permissions": [
+      "meetings.view",
+      "shareholders.lookup",
+      "attendance.view",
+      "attendance.register"
+    ]
+  },
+  {
+    "id": "vote-operator",
+    "name": "Vote Operator",
+    "description": "Look up eligible voters and record ballots in assigned meetings.",
+    "permissions": [
+      "meetings.view",
+      "nominees.view",
+      "votes.lookup",
+      "votes.record"
+    ]
+  },
+  {
+    "id": "auditor",
+    "name": "Auditor",
+    "description": "Read attendance, results, reports, and audit history.",
+    "permissions": [
+      "meetings.view",
+      "nominees.view",
+      "attendance.view",
+      "results.view",
+      "reports.attendance",
+      "reports.voting",
+      "audit.view"
+    ]
+  },
+  {
+    "id": "projection-viewer",
+    "name": "Projection Viewer",
+    "description": "View aggregate attendance and election projection screens.",
+    "permissions": [
+      "meetings.view",
+      "projection.view"
+    ]
+  }
+]

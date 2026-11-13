@@ -1,0 +1,422 @@
+/* [project]/components/general/AttendanceClock.module.css [app-client] (css) */
+.AttendanceClock-module__dUgQea__clock {
+  --face-size: clamp(100px, 21.875vw, 200px);
+  --anchor-size: 100px;
+  --orbit-gap: 14px;
+  --side-gap: 24px;
+  --dial-highlight: #fff;
+  --dial-base: #e7eef7;
+  --dial-ink: #143253;
+  --dial-line: #bfd0e2;
+  --hand-highlight: #3b6989;
+  --hand-ink: #102d4a;
+  --second-ink: #098c76;
+  left: calc(100% + var(--side-gap));
+  top: calc(50% - var(--face-size) / 2);
+  z-index: 2;
+  text-align: left;
+  pointer-events: none;
+  color: #153555;
+  align-items: center;
+  gap: 18px;
+  width: max-content;
+  animation: 1s cubic-bezier(.22, 1, .36, 1) both AttendanceClock-module__dUgQea__clock-arrive;
+  display: flex;
+  position: absolute;
+}
+
+.AttendanceClock-module__dUgQea__clock:before {
+  content: "";
+  left: calc(-1 * var(--side-gap));
+  top: calc(var(--face-size) / 2);
+  width: var(--side-gap);
+  transform-origin: 0;
+  border-top: 1px dashed rgba(42, 151, 140, .44);
+  position: absolute;
+}
+
+.AttendanceClock-module__dUgQea__watch {
+  width: var(--face-size);
+  height: var(--face-size);
+  overflow-clip-margin: 12px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: clip;
+}
+
+.AttendanceClock-module__dUgQea__halo {
+  filter: blur(9px);
+  background: conic-gradient(from 45deg, rgba(57, 122, 250, 0), rgba(57, 122, 250, .208), rgba(26, 168, 137, .208), rgba(57, 122, 250, 0));
+  border-radius: 50%;
+  animation: 16s linear infinite AttendanceClock-module__dUgQea__bezel-orbit;
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+}
+
+.AttendanceClock-module__dUgQea__bezel {
+  background: linear-gradient(145deg, #fff 5%, #b3c8d6 28%, #f4f8fb 45%, #94acbd 75%, #e4edf3);
+  border: 1px solid #a4bccb;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  position: relative;
+  box-shadow: 0 10px 22px rgba(22, 60, 97, .137), inset 0 1px 2px #fff;
+}
+
+.AttendanceClock-module__dUgQea__face {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  box-shadow: 0 0 0 1px rgba(24, 59, 87, .094), inset 0 2px 5px rgba(11, 48, 65, .165);
+}
+
+.AttendanceClock-module__dUgQea__windingCrown {
+  z-index: -1;
+  background: repeating-linear-gradient(0deg, #8fa5b7 0, #8fa5b7 1px, #dbe7ed 1px, #dbe7ed 3px);
+  border: 1px solid #8da4b6;
+  border-radius: 2px;
+  width: 5px;
+  height: 14%;
+  position: absolute;
+  top: 43%;
+  right: -4px;
+}
+
+.AttendanceClock-module__dUgQea__innerRing {
+  fill: none;
+  stroke: var(--dial-line);
+  stroke-width: .7px;
+  opacity: .55;
+}
+
+.AttendanceClock-module__dUgQea__minuteMark {
+  stroke: var(--dial-line);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+
+.AttendanceClock-module__dUgQea__hourMark {
+  stroke: var(--dial-ink);
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+.AttendanceClock-module__dUgQea__numeral {
+  fill: var(--dial-ink);
+  text-anchor: middle;
+  font: 700 21px Arial, sans-serif;
+}
+
+.AttendanceClock-module__dUgQea__dialLabel {
+  fill: var(--second-ink);
+  text-anchor: middle;
+  letter-spacing: 4px;
+  font: 700 9px Arial, sans-serif;
+}
+
+.AttendanceClock-module__dUgQea__dialWindow {
+  fill: var(--dial-line);
+  fill-opacity: .32;
+  stroke: var(--dial-line);
+  stroke-width: .5px;
+}
+
+.AttendanceClock-module__dUgQea__dialTime {
+  fill: var(--dial-ink);
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+  font: 700 16px Arial, sans-serif;
+}
+
+.AttendanceClock-module__dUgQea__hand {
+  transform-origin: 120px 120px;
+  animation: linear infinite AttendanceClock-module__dUgQea__hand-sweep;
+  animation-delay: var(--hand-delay);
+}
+
+.AttendanceClock-module__dUgQea__hourHand {
+  animation-duration: 43200s;
+}
+
+.AttendanceClock-module__dUgQea__minuteHand {
+  animation-duration: 3600s;
+}
+
+.AttendanceClock-module__dUgQea__secondHand {
+  stroke: var(--second-ink);
+  stroke-width: 2px;
+  fill: var(--dial-base);
+  animation-duration: 60s;
+}
+
+.AttendanceClock-module__dUgQea__handInset {
+  stroke: #94ded0;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+
+.AttendanceClock-module__dUgQea__pivot {
+  fill: var(--hand-ink);
+  stroke: #d7e9ef;
+  stroke-width: 1px;
+}
+
+.AttendanceClock-module__dUgQea__reflection {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  opacity: .7;
+}
+
+.AttendanceClock-module__dUgQea__readout {
+  min-width: 190px;
+}
+
+.AttendanceClock-module__dUgQea__eyebrow {
+  letter-spacing: 1.35px;
+  color: #38756c;
+  align-items: center;
+  gap: 5px;
+  font: 700 21px Arial, sans-serif;
+  display: flex;
+}
+
+.AttendanceClock-module__dUgQea__liveDot {
+  background: #139c7c;
+  border-radius: 50%;
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  animation: 3s ease-in-out infinite AttendanceClock-module__dUgQea__clock-breathe;
+  box-shadow: 0 0 0 3px rgba(19, 156, 124, .075);
+}
+
+.AttendanceClock-module__dUgQea__zone {
+  letter-spacing: .6px;
+  border: 1px solid rgba(107, 155, 154, .25);
+  border-radius: 4px;
+  margin-left: 2px;
+  padding: 2px 3px;
+  font-size: 20px;
+}
+
+.AttendanceClock-module__dUgQea__time {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1.3px;
+  white-space: nowrap;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 4px;
+  font: 700 74px / 1.15 Arial, sans-serif;
+  display: flex;
+}
+
+.AttendanceClock-module__dUgQea__colon {
+  color: #508b9e;
+  animation: 2s ease-in-out infinite AttendanceClock-module__dUgQea__clock-breathe;
+}
+
+.AttendanceClock-module__dUgQea__seconds {
+  letter-spacing: -.3px;
+  color: #207c83;
+  justify-content: center;
+  width: 35px;
+  font-size: 28px;
+  font-weight: 600;
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.AttendanceClock-module__dUgQea__seconds > span {
+  display: block;
+}
+
+.AttendanceClock-module__dUgQea__date {
+  color: #627b8d;
+  letter-spacing: .4px;
+  margin-top: 4px;
+  font: 500 22px Arial, sans-serif;
+}
+
+.dark .AttendanceClock-module__dUgQea__clock {
+  --dial-highlight: #15374b;
+  --dial-base: #071722;
+  --dial-ink: #c9e8f5;
+  --dial-line: #47738b;
+  --hand-highlight: #f1fbff;
+  --hand-ink: #afcddd;
+  --second-ink: #5ce7c1;
+  color: #e2f3fb;
+}
+
+.dark .AttendanceClock-module__dUgQea__bezel {
+  background: linear-gradient(145deg, #98bbc7, #294557 28%, #8bacbb 45%, #1b3648 75%, #527a8a);
+  border-color: #54798b;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .533), 0 0 18px rgba(29, 171, 151, .082), inset 0 1px 2px rgba(198, 228, 233, .627);
+}
+
+.dark .AttendanceClock-module__dUgQea__eyebrow {
+  color: #8edaca;
+}
+
+.dark .AttendanceClock-module__dUgQea__zone {
+  border-color: rgba(142, 218, 202, .25);
+}
+
+.dark .AttendanceClock-module__dUgQea__seconds {
+  color: #77d7d2;
+}
+
+.dark .AttendanceClock-module__dUgQea__date {
+  color: #8da9ba;
+}
+
+.dark .AttendanceClock-module__dUgQea__clock:before {
+  border-color: rgba(118, 217, 196, .376);
+}
+
+.dark .AttendanceClock-module__dUgQea__reflection {
+  opacity: .18;
+}
+
+@keyframes AttendanceClock-module__dUgQea__hand-sweep {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes AttendanceClock-module__dUgQea__bezel-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes AttendanceClock-module__dUgQea__clock-breathe {
+  50% {
+    opacity: .55;
+  }
+}
+
+@keyframes AttendanceClock-module__dUgQea__clock-arrive {
+  from {
+    opacity: 0;
+    transform: translate(6px, -6px)scale(.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0)scale(1);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1599px) {
+  .AttendanceClock-module__dUgQea__clock {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .AttendanceClock-module__dUgQea__readout {
+    text-align: center;
+  }
+
+  .AttendanceClock-module__dUgQea__eyebrow, .AttendanceClock-module__dUgQea__time {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1023px) {
+  .AttendanceClock-module__dUgQea__clock {
+    --face-size: 100px;
+    left: calc(50% + (50% + var(--anchor-size) / 2 + var(--orbit-gap)) * .707107 - var(--anchor-size) / 2);
+    top: calc(50% - (50% + var(--anchor-size) / 2 + var(--orbit-gap)) * .707107 - var(--anchor-size) / 2);
+    gap: 10px;
+  }
+
+  .AttendanceClock-module__dUgQea__clock:before {
+    left: calc(var(--face-size) * .146447);
+    top: calc(var(--face-size) * .853553);
+    width: var(--orbit-gap);
+    transform: rotate(135deg);
+  }
+
+  .AttendanceClock-module__dUgQea__readout {
+    min-width: 115px;
+  }
+
+  .AttendanceClock-module__dUgQea__time {
+    font-size: 36px;
+  }
+
+  .AttendanceClock-module__dUgQea__eyebrow {
+    letter-spacing: .8px;
+    font-size: 8px;
+  }
+
+  .AttendanceClock-module__dUgQea__zone {
+    font-size: 8px;
+  }
+
+  .AttendanceClock-module__dUgQea__seconds {
+    width: 25px;
+    font-size: 18px;
+  }
+
+  .AttendanceClock-module__dUgQea__date {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .AttendanceClock-module__dUgQea__clock {
+    --face-size: 72px;
+    --anchor-size: 72px;
+    --orbit-gap: 12px;
+  }
+
+  .AttendanceClock-module__dUgQea__halo {
+    filter: blur(6px);
+    top: -3px;
+    bottom: -3px;
+    left: -3px;
+    right: -3px;
+  }
+
+  .AttendanceClock-module__dUgQea__readout {
+    clip-path: inset(50%);
+    white-space: nowrap;
+    width: 1px;
+    min-width: 0;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .AttendanceClock-module__dUgQea__bezel {
+    padding: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .AttendanceClock-module__dUgQea__clock, .AttendanceClock-module__dUgQea__halo, .AttendanceClock-module__dUgQea__hand, .AttendanceClock-module__dUgQea__liveDot, .AttendanceClock-module__dUgQea__colon {
+    animation: none;
+  }
+
+  .AttendanceClock-module__dUgQea__hand {
+    transform: rotate(var(--hand-angle));
+  }
+}
+
+/*# sourceMappingURL=components_general_AttendanceClock_module_css_bad6b30c._.single.css.map*/

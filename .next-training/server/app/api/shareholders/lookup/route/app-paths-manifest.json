@@ -1,0 +1,3 @@
+{
+  "/api/shareholders/lookup/route": "app/api/shareholders/lookup/route.js"
+}

@@ -1,0 +1,14 @@
+{
+  "/account/password/page": "app/account/password/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/password/route": "app/api/auth/password/route.js",
+  "/api/meetings/[id]/attendance/route": "app/api/meetings/[id]/attendance/route.js",
+  "/api/meetings/[id]/close/route": "app/api/meetings/[id]/close/route.js",
+  "/api/meetings/[id]/nominees/route": "app/api/meetings/[id]/nominees/route.js",
+  "/api/meetings/[id]/open/route": "app/api/meetings/[id]/open/route.js",
+  "/api/meetings/[id]/votes/route": "app/api/meetings/[id]/votes/route.js",
+  "/api/meetings/[id]/votingopen/route": "app/api/meetings/[id]/votingopen/route.js",
+  "/login/page": "app/login/page.js",
+  "/meetings/[id]/vote/page": "app/meetings/[id]/vote/page.js",
+  "/page": "app/page.js"
+}

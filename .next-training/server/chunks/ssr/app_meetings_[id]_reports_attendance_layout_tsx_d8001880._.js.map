@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/AaronT.LUCY/Desktop/voting-system/Latest/voting-app-latest/app/meetings/%5Bid%5D/reports/attendance/layout.tsx"],"sourcesContent":["import { requirePageAccess } from \"@/lib/page-access\";\r\n\r\nexport default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ id: string }> }) {\r\n  await requirePageAccess(\"reports.attendance\", (await params).id);\r\n  return children;\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;;AAEe,eAAe,OAAO,EAAE,QAAQ,EAAE,MAAM,EAAkE;IACvH,MAAM,IAAA,0IAAiB,EAAC,sBAAsB,CAAC,MAAM,MAAM,EAAE,EAAE;IAC/D,OAAO;AACT","debugId":null}}]
+}

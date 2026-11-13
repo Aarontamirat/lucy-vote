@@ -1,0 +1,330 @@
+.projection {
+  position: relative;
+  min-height: 100vh;
+  padding: 32px 24px;
+  background: white;
+  color: #111827;
+  font-family: Arial, Helvetica, "Noto Sans Ethiopic", sans-serif;
+}
+.projection:fullscreen {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+.background,
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.15;
+}
+.overlay {
+  background: white;
+}
+.content {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  text-align: center;
+}
+.content > * + * {
+  margin-top: 24px;
+}
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo img {
+  width: 192px;
+  height: auto;
+  object-fit: contain;
+}
+.heading {
+  min-width: 0;
+  text-align: center;
+}
+.heading h1 {
+  background: linear-gradient(to right, #1d4ed8, #22c55e);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.heading p {
+  margin-top: 16px;
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.fullscreenButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 8px 24px;
+  border: 2px solid #1e3a8a;
+  border-radius: 16px;
+  background: transparent;
+  color: #1e3a8a;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.fullscreenButton:hover {
+  background: #1e3a8a;
+  color: #dbeafe;
+}
+.fullscreenButton:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}
+.content > .gaugeSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 48px;
+}
+.gauge {
+  position: relative;
+  width: 288px;
+  height: 288px;
+}
+.gaugeGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(to right, #166534, #3b82f6, #166534);
+  filter: blur(64px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+.quorumGlow {
+  background: linear-gradient(to right, #1e40af, #22c55e, #1e40af);
+}
+.progressbar {
+  font-weight: 600;
+}
+.centerGlow {
+  position: absolute;
+  inset: 40px;
+  border-radius: 50%;
+  background: rgb(147 197 253 / 0.1);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.quorumMessage {
+  margin-top: 24px;
+  color: #374151;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+.quorumMet {
+  color: #15803d;
+}
+.content > .welcomes {
+  position: absolute;
+  top: 288px;
+  left: 20%;
+  z-index: 50;
+  margin-top: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.welcome {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+.welcomeWave {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+}
+.welcomeMessage {
+  padding: 16px 32px;
+  background: rgb(0 0 0 / 0.4);
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  backdrop-filter: blur(24px);
+  user-select: none;
+}
+.content > .stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.stat {
+  padding: 24px;
+  border: 2px solid #1e3a8a;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.2);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+.stat p {
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+.stat strong {
+  display: block;
+  margin-top: 20px;
+  color: #111827;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  overflow-wrap: anywhere;
+}
+:global(.dark) .projection {
+  background: linear-gradient(to right, #111827, black, #111827);
+  color: #f3f4f6;
+}
+:global(.dark) .background {
+  opacity: 0.1;
+}
+:global(.dark) .overlay {
+  background: rgb(0 0 0 / 0.5);
+}
+:global(.dark) .heading p {
+  color: #d1d5db;
+}
+:global(.dark) .fullscreenButton {
+  border-color: #60a5fa;
+  color: #93c5fd;
+}
+:global(.dark) .fullscreenButton:hover {
+  background: #1e3a8a;
+  color: #dbeafe;
+}
+:global(.dark) .gaugeGlow {
+  opacity: 0.2;
+}
+:global(.dark) .centerGlow {
+  background: rgb(191 219 254 / 0.1);
+}
+:global(.dark) .quorumMessage:not(.quorumMet) {
+  color: #e5e7eb;
+}
+:global(.dark) .welcomeMessage {
+  background: rgb(255 255 255 / 0.2);
+}
+:global(.dark) .stat {
+  border-color: #60a5fa;
+  background: rgb(0 0 0 / 0.3);
+}
+:global(.dark) .stat p {
+  color: #93c5fd;
+}
+:global(.dark) .stat strong {
+  color: #f3f4f6;
+}
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: clamp(24px, 6vw, 112px);
+  }
+  .heading h1 {
+    font-size: 60px;
+    line-height: 1;
+  }
+  .heading p {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .controls {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .gauge {
+    width: 384px;
+    height: 384px;
+  }
+  .content > .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stat p {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .stat p {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .stat strong {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+@media (min-width: 1280px) {
+  .header {
+    column-gap: 112px;
+  }
+  .content > .stats {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1536px) {
+  .stat strong {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .content > .welcomes {
+    left: 50%;
+    width: calc(100vw - 48px);
+  }
+  .welcomeMessage {
+    padding: 12px 20px;
+    font-size: 20px;
+    line-height: 28px;
+    overflow-wrap: anywhere;
+  }
+}

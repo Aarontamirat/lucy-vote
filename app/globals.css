@@ -1,0 +1,1257 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Noto Sans Ethiopic";
+  src: url("/fonts/noto-sans-ethiopic-ethiopic-400-normal.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Sans Ethiopic";
+  src: url("/fonts/noto-sans-ethiopic-ethiopic-700-normal.woff2")
+    format("woff2");
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, "Ebrima", "Nyala", sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* --- PRINT STYLES --- */
+@media print {
+  /* Hide everything by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show only the printable area */
+  .print-area,
+  .print-area * {
+    visibility: visible !important;
+  }
+
+  /* Position printable area at top-left corner */
+  .print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  /* Hide all UI elements you don't want printed */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure background stays white for print clarity */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Remove unnecessary page margins */
+  @page {
+    margin: 10mm;
+  }
+}
+
+.ballot-write-in {
+  break-inside: avoid;
+}
+
+[lang="am"] {
+  font-family: "Noto Sans Ethiopic", "Ebrima", "Nyala", sans-serif;
+}
+.ballot-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ballot-title {
+  font-size: 19px;
+  font-weight: 800;
+}
+.ballot-voter-details {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+.ballot-voter-details > div {
+  display: grid;
+  grid-template-columns: 43% 1fr;
+  gap: 8px;
+}
+.ballot-voter-details dt {
+  font-weight: 600;
+}
+.ballot-instructions {
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  padding: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.ballot-write-in {
+  min-height: 34px;
+}
+.ballot-signature {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  font-size: 12px;
+}
+
+@media print {
+  .voting-cards-page {
+    padding: 0 !important;
+    background: white !important;
+  }
+  .voting-card-batch {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5mm;
+    max-width: none !important;
+  }
+  .voting-card {
+    margin-bottom: 0;
+    padding: 4mm !important;
+    border: 1px solid #333 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .voting-card * {
+    color: black !important;
+    border-color: #333 !important;
+  }
+  .ballot-write-in {
+    min-height: 9mm;
+  }
+}
+
+.election-wall {
+  --wall-ink: #152b48;
+  --wall-muted: #526781;
+  --wall-line: #d6e1ee;
+  --wall-panel: #ffffff;
+  --wall-surface: #f0f5fb;
+  --wall-accent: #1766c9;
+  --leader-accent: #946314;
+  --leader-bg: #fff3d6;
+  --tile-track: #dbe5f2;
+  --row-column-gap: clamp(6px, 0.8vw, 14px);
+  position: relative;
+  height: calc(100dvh - 64px);
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--wall-ink);
+  background:
+    radial-gradient(ellipse at 90% 0%, #cce9fc66, transparent 48%),
+    linear-gradient(150deg, #f7faff, #edf3fa);
+  padding: clamp(12px, 1.4vw, 28px);
+  gap: 10px;
+  color-scheme: light;
+}
+.election-wall.projection-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  height: 100dvh;
+}
+.election-wall:fullscreen {
+  width: 100vw;
+  height: 100dvh;
+}
+.election-wall-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  padding-bottom: 10px;
+}
+.election-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+.election-logo {
+  width: 84px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #ffffff80;
+  border-radius: 14px;
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0 4px 18px #152b4810;
+}
+.election-logo img {
+  width: 100%;
+  height: auto;
+  max-height: 52px;
+}
+.election-heading {
+  min-width: 0;
+}
+.election-kicker {
+  color: var(--wall-muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.election-heading h1 {
+  width: fit-content;
+  font-size: clamp(18px, 2.7vw, 28px);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin: 4px 0;
+  color: var(--wall-accent);
+  background: linear-gradient(100deg, #06798c, #2165d9);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.election-heading > p {
+  color: var(--wall-muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.election-metrics {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+.election-metrics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-left: 24px;
+  border-left: 1px solid var(--wall-line);
+}
+.election-metrics span {
+  color: var(--wall-muted);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.election-metrics strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(24px, 2vw, 36px);
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+}
+.election-counted strong {
+  color: var(--wall-accent);
+}
+.election-seats strong {
+  color: var(--leader-accent);
+}
+.election-seats svg {
+  width: 22px;
+  height: 22px;
+}
+.election-controls {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.election-controls button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--wall-line);
+  border-radius: 10px;
+  background: var(--wall-panel);
+  cursor: pointer;
+  color: var(--wall-muted);
+  box-shadow: none;
+}
+.election-controls button:hover {
+  background: var(--wall-surface);
+  color: var(--wall-accent);
+}
+.election-controls button:focus-visible,
+.election-settings button:focus-visible,
+.election-settings select:focus-visible {
+  outline: 2px solid var(--wall-accent);
+  outline-offset: 3px;
+}
+.election-controls svg {
+  width: 17px;
+  height: 17px;
+}
+.election-board-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--wall-line);
+}
+.election-board-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.election-board-title h2 {
+  font-size: 21px;
+  font-weight: 800;
+}
+.election-nominee-count {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 24px;
+  border-radius: 7px;
+  padding: 0 6px;
+  background: var(--wall-line);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+}
+.election-board-hint {
+  color: var(--wall-muted);
+  font-size: 12px;
+  padding-left: 6px;
+}
+.election-status-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #0a89782a;
+  border-radius: 99px;
+  background: #e1f5ed;
+  color: #12624e;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.election-live-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+.election-wall[data-voting="true"] .election-live-dot {
+  animation: live-pulse 3.8s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  50% {
+    box-shadow: 0 0 0 5px #31b58b25;
+  }
+}
+.election-status-chip.is-closed,
+.election-status-chip.is-waiting {
+  color: var(--wall-muted);
+  border-color: var(--wall-line);
+  background: var(--wall-panel);
+}
+.election-passer-summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+  min-height: 32px;
+}
+.election-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--leader-accent);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.election-legend > svg {
+  width: 16px;
+  height: 16px;
+}
+.election-legend > strong {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+}
+.election-legend strong > span {
+  color: var(--wall-muted);
+  font-weight: 500;
+}
+.election-group-seats {
+  display: flex;
+  gap: 8px;
+}
+.election-group-seats > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--wall-line);
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #215ec2;
+  background: #e8f0ff;
+}
+.election-group-seats > span[data-group="second"] {
+  color: #087965;
+  background: #e0f5ed;
+}
+.election-group-seats strong {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+.election-board-assurance {
+  color: var(--wall-muted);
+  font-size: 11px;
+  margin-left: auto;
+}
+.leaderboard-column-headings,
+.nominee-leaderboard {
+  --rank-column: clamp(32px, calc(var(--board-name-size) * 1.1), 64px);
+  --weight-column: clamp(88px, calc(var(--board-name-size) * 3.9), 240px);
+}
+.leaderboard-column-headings {
+  display: grid;
+  column-gap: 20px;
+  flex-shrink: 0;
+  height: 28px;
+}
+.leaderboard-column-heading,
+.nominee-row-content {
+  display: grid;
+  grid-template-columns: var(--rank-column) minmax(0, 1fr) var(--weight-column);
+  column-gap: var(--row-column-gap);
+  align-items: center;
+}
+.leaderboard-column-heading {
+  padding: 0 13px 3px 15px;
+  color: var(--wall-muted);
+  font-size: 11px;
+  line-height: 1.15;
+  min-height: 0;
+  overflow: hidden;
+  font-weight: 600;
+}
+.leaderboard-column-heading > span:first-child {
+  text-align: center;
+}
+.leaderboard-column-heading > span:nth-child(n + 3) {
+  text-align: right;
+}
+.nominee-leaderboard {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 20px;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+.leaderboard-column-headings[data-density="compact"],
+.nominee-leaderboard[data-density="compact"] {
+  --weight-column: clamp(132px, calc(var(--board-name-size) * 6), 200px);
+}
+.nominee-row {
+  --nominee-accent: var(--nominee-light);
+  --row-padding: clamp(2px, calc(var(--board-row-height) * 0.06), 8px);
+  --row-content-height: calc(
+    var(--board-row-height) - var(--row-padding) * 2 - 8px
+  );
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 3px;
+  min-width: 0;
+  min-height: 0;
+  gap: 3px;
+  padding: var(--row-padding) 12px;
+  contain: layout;
+  border: 1px solid var(--wall-line);
+  border-left: 3px solid var(--nominee-accent);
+  border-radius: 11px;
+  background: var(--wall-panel);
+  color: var(--wall-ink);
+  box-shadow: 0 2px 8px #152b4805;
+  transition:
+    border-color 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nominee-row.is-leading {
+  background: linear-gradient(105deg, #058d4294, #dfdfdf 70%);
+  border-color: #afc9ef;
+  border-left-color: var(--nominee-accent);
+  box-shadow: 0 2px 10px #1b63c60b;
+}
+.nominee-row.is-tied {
+  background: #ecb290;
+  border-color: #deb97b;
+  border-left-color: #b07922;
+}
+.nominee-row-content {
+  min-width: 0;
+  min-height: 0;
+}
+.nominee-number {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  min-width: 0;
+  height: clamp(26px, calc(var(--board-name-size) * 1.25), 50px);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--nominee-accent) 9%, transparent);
+  color: var(--nominee-accent);
+  font-family: Arial, sans-serif;
+  font-size: clamp(18px, calc(var(--board-name-size) * 0.92), 36px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+.nominee-identity {
+  min-width: 0;
+  min-height: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+.nominee-name-area {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.nominee-primary-line {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--row-name-size) * 0.2);
+  min-width: 0;
+  flex-shrink: 0;
+}
+.nominee-full-name {
+  min-width: 0;
+  font-size: var(--row-name-size);
+  font-weight: 800;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.nominee-crown {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--leader-accent);
+}
+.nominee-crown svg {
+  width: calc(var(--row-name-size) * 0.8);
+  height: calc(var(--row-name-size) * 0.8);
+  fill: var(--leader-bg);
+}
+.nominee-secondary-name {
+  flex-shrink: 0;
+  color: var(--wall-muted);
+  font-size: calc(var(--row-name-size) * 0.48);
+  line-height: 1.2;
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+.nominee-meta {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 3px 9px;
+  font-size: clamp(8px, calc(var(--board-name-size) * 0.31), 12px);
+  line-height: 1.2;
+  padding-bottom: 1px;
+}
+.nominee-group {
+  color: #2868cb;
+  font-weight: 600;
+}
+.nominee-row[data-group="second"] .nominee-group {
+  color: #097b69;
+}
+.nominee-group-rank {
+  font-weight: 800;
+  white-space: nowrap;
+}
+.nominee-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 700;
+  color: var(--leader-accent);
+  background: var(--leader-bg);
+  padding: 1px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.nominee-row.is-tied .nominee-status {
+  background: #ffe8c0;
+  color: #8e5315;
+}
+.nominee-status svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+.nominee-weight {
+  font-size: clamp(
+    10px,
+    min(
+      calc(var(--board-name-size) * 0.95),
+      calc(var(--weight-column) / (var(--weight-characters) * 0.62)),
+      calc(var(--row-content-height) * 0.48)
+    ),
+    60px
+  );
+  font-family: Arial, sans-serif;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  text-align: right;
+  white-space: nowrap;
+}
+.nominee-votes {
+  display: grid;
+  grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  align-self: stretch;
+  gap: 2px;
+  min-width: 0;
+  min-height: 0;
+}
+.nominee-percent {
+  font-family: Arial, sans-serif;
+  font-size: clamp(
+    10px,
+    min(
+      calc(var(--board-name-size) * 0.6),
+      calc(var(--weight-column) / (var(--percent-characters) * 0.58 + 0.65)),
+      calc(var(--row-content-height) * 0.38)
+    ),
+    42px
+  );
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--nominee-accent);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+.nominee-percent small {
+  font-size: 0.55em;
+  line-height: 1;
+  margin-left: 2px;
+}
+.nominee-row[data-density="compact"] .nominee-votes {
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 48px;
+  column-gap: 4px;
+}
+.nominee-row[data-density="compact"] .nominee-weight {
+  font-size: clamp(
+    8px,
+    min(
+      calc(var(--board-name-size) * 0.95),
+      calc((var(--weight-column) - 52px) / (var(--weight-characters) * 0.62)),
+      calc(var(--row-content-height) * 0.8)
+    ),
+    60px
+  );
+}
+.nominee-row[data-density="compact"] .nominee-percent {
+  font-size: clamp(
+    8px,
+    min(
+      calc(var(--board-name-size) * 0.6),
+      calc(48px / (var(--percent-characters) * 0.58 + 0.65)),
+      calc(var(--row-content-height) * 0.8)
+    ),
+    16px
+  );
+}
+.nominee-support-track {
+  margin-left: calc(var(--rank-column) + var(--row-column-gap));
+  border-radius: 4px;
+  background: var(--tile-track);
+  overflow: hidden;
+}
+.nominee-support-track > div {
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--nominee-accent) 65%, transparent),
+    var(--nominee-accent)
+  );
+}
+.election-wall-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  color: var(--wall-muted);
+  font-size: 10px;
+  padding-top: 4px;
+}
+.election-connection {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #147552;
+  white-space: nowrap;
+}
+.election-connection svg {
+  width: 13px;
+  height: 13px;
+}
+.election-connection time {
+  color: var(--wall-muted);
+  font-variant-numeric: tabular-nums;
+  border-left: 1px solid var(--wall-line);
+  padding-left: 8px;
+}
+.election-connection.is-stale {
+  color: #9a6515;
+}
+.election-notice {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  border: 1px solid #e6b16a80;
+  background: #fff2da;
+  color: #653d18;
+  font-size: 12px;
+  border-radius: 8px;
+}
+.election-empty {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--wall-ink);
+  font-size: 24px;
+}
+.election-empty > svg {
+  width: 60px;
+  height: 60px;
+  opacity: 0.55;
+}
+.election-empty > span {
+  font-size: 14px;
+  color: var(--wall-muted);
+}
+.election-settings {
+  position: absolute;
+  top: 76px;
+  right: 24px;
+  z-index: 5;
+  width: min(340px, calc(100% - 32px));
+  border-radius: 16px;
+  border: 1px solid var(--wall-line);
+  background: var(--wall-panel);
+  color: var(--wall-ink);
+  box-shadow: 0 12px 48px #06082150;
+  padding: 18px;
+  font-size: 13px;
+}
+.election-settings > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.election-settings > div button {
+  cursor: pointer;
+}
+.election-settings > div svg {
+  width: 18px;
+  height: 18px;
+}
+.election-settings label {
+  display: block;
+  margin-bottom: 6px;
+}
+.election-settings select {
+  width: 100%;
+  border: 1px solid var(--wall-line);
+  border-radius: 8px;
+  padding: 9px;
+  background: var(--wall-surface);
+}
+.election-settings-action {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--wall-accent);
+  color: #fff;
+  margin-top: 14px;
+  cursor: pointer;
+}
+.dark .election-wall {
+  --wall-ink: #eff5ff;
+  --wall-muted: #a8bbd3;
+  --wall-line: #2b405d;
+  --wall-panel: #17263d;
+  --wall-surface: #112139;
+  --wall-accent: #84b7ff;
+  --leader-accent: #f5d38b;
+  --leader-bg: #493b22;
+  --tile-track: #304562;
+  background:
+    radial-gradient(ellipse at 95% 0%, #143f5b60, transparent 50%),
+    linear-gradient(150deg, #0c182b, #102039);
+  color-scheme: dark;
+}
+.dark .election-heading h1 {
+  background-image: linear-gradient(100deg, #6de5d9, #89b5ff);
+}
+.dark .nominee-row {
+  --nominee-accent: var(--nominee-dark);
+}
+.dark .nominee-row.is-leading {
+  background: linear-gradient(105deg, #1b3455, #3168b4 75%);
+  border-color: #40618a;
+  border-left-color: var(--nominee-accent);
+  box-shadow: 0 2px 10px #00000015;
+}
+.dark .nominee-row.is-tied {
+  background: #332d26;
+  border-color: #aa8349;
+  border-left-color: #edc479;
+}
+.dark .nominee-group {
+  color: #92bfff;
+}
+.dark .nominee-row[data-group="second"] .nominee-group {
+  color: #77e0c4;
+}
+.dark .nominee-row.is-tied .nominee-status {
+  background: #5c4021;
+  color: #ffdb9b;
+}
+.dark .election-status-chip {
+  background: #16392f;
+  border-color: #326553;
+  color: #8de2bf;
+}
+.dark .election-status-chip.is-closed,
+.dark .election-status-chip.is-waiting {
+  background: var(--wall-panel);
+  border-color: var(--wall-line);
+  color: var(--wall-muted);
+}
+.dark .election-group-seats > span {
+  color: #a6c9ff;
+  background: #1c3658;
+  border-color: #365a88;
+}
+.dark .election-group-seats > span[data-group="second"] {
+  color: #8de8ce;
+  background: #173c36;
+  border-color: #32695d;
+}
+.dark .election-connection {
+  color: #8de2bf;
+}
+.dark .election-connection.is-stale {
+  color: #f4d288;
+}
+.dark .election-notice {
+  background: #3b3225;
+  color: #f8dda8;
+}
+.dark .election-settings-action {
+  background: #79b0ff;
+  color: #0c182b;
+}
+@media (max-width: 1100px) {
+  .election-wall-header {
+    gap: 12px;
+  }
+  .election-logo {
+    width: 64px;
+    height: 54px;
+    border-radius: 10px;
+  }
+  .election-brand {
+    gap: 10px;
+  }
+  .election-metrics {
+    gap: 12px;
+  }
+  .election-metrics > div {
+    padding-left: 12px;
+  }
+  .election-metrics span {
+    font-size: 9px;
+  }
+  .election-board-hint,
+  .election-board-assurance {
+    display: none;
+  }
+}
+@media (max-height: 800px) {
+  .election-wall {
+    gap: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .election-wall-header {
+    padding-bottom: 2px;
+  }
+  .election-logo {
+    height: 56px;
+    width: 72px;
+  }
+  .election-heading h1 {
+    font-size: 30px;
+  }
+  .election-heading > p,
+  .election-kicker {
+    font-size: 10px;
+  }
+  .election-board-heading {
+    padding-top: 8px;
+  }
+  .election-board-title h2 {
+    font-size: 18px;
+  }
+  .election-status-chip {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .election-passer-summary {
+    min-height: 26px;
+  }
+  .nominee-row {
+    grid-template-rows: minmax(0, 1fr) 3px;
+    gap: 3px;
+  }
+  .election-wall-footer {
+    padding-top: 0;
+  }
+}
+@media (max-width: 650px) {
+  .election-wall {
+    --row-column-gap: 5px;
+  }
+  .leaderboard-column-headings,
+  .nominee-leaderboard {
+    --weight-column: 66px;
+    --rank-column: 26px;
+  }
+  .election-logo,
+  .election-metrics .election-shares {
+    display: none;
+  }
+  .election-heading h1 {
+    font-size: 23px;
+  }
+  .election-kicker,
+  .election-heading > p {
+    font-size: 9px;
+  }
+  .election-metrics {
+    gap: 8px;
+  }
+  .election-metrics > div {
+    padding-left: 8px;
+  }
+  .election-metrics strong {
+    font-size: 20px;
+  }
+  .election-seats svg {
+    width: 15px;
+    height: 15px;
+  }
+  .election-controls {
+    gap: 3px;
+  }
+  .election-controls button {
+    width: 28px;
+    height: 28px;
+  }
+  .election-board-title h2 {
+    font-size: 16px;
+  }
+  .election-status-chip {
+    font-size: 9px;
+  }
+  .election-legend {
+    font-size: 9px;
+    gap: 4px;
+  }
+  .election-passer-summary {
+    gap: 7px;
+  }
+  .election-group-seats {
+    gap: 4px;
+  }
+  .election-group-seats > span {
+    padding: 3px 5px;
+    font-size: 9px;
+    gap: 4px;
+  }
+  .nominee-row {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .leaderboard-column-heading {
+    padding-left: 10px;
+    padding-right: 8px;
+    font-size: 8px;
+  }
+  .nominee-number {
+    font-size: 17px;
+  }
+  .election-wall-footer > p {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-vote-bar::after,
+  .election-live-dot {
+    animation: none !important;
+  }
+  .nominee-row {
+    transition: none !important;
+  }
+}
+
+/* Smooth scroll and subtle scrollbar for modals */
+.DialogContent {
+  scroll-behavior: smooth;
+}
+
+.DialogContent::-webkit-scrollbar {
+  width: 6px;
+}
+.DialogContent::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* =========================================================
+   NOMINEE VOTE VALUES — RESPONSIVE LAYOUT FIX
+   ========================================================= */
+
+/* Prevent vote values from exceeding their grid cells. */
+.nominee-weight,
+.nominee-percent {
+  min-width: 0;
+}
+
+.nominee-percent > span {
+  min-width: 0;
+}
+
+/* Mobile layout */
+@media (max-width: 650px) {
+  /*
+   * Match the specificity of the existing compact selectors.
+   * This ensures the mobile column widths actually take effect.
+   */
+  .leaderboard-column-headings[data-density="compact"],
+  .nominee-leaderboard[data-density="compact"] {
+    --weight-column: 66px;
+    --rank-column: 26px;
+  }
+
+  /*
+   * Stack weight and percentage vertically instead of
+   * squeezing both into two narrow horizontal columns.
+   */
+  .nominee-row[data-density="compact"] .nominee-votes {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr);
+    column-gap: 0;
+    row-gap: 2px;
+  }
+
+  /*
+   * Recalculate weight font size using the FULL vote column.
+   * Do not subtract 52px, as the horizontal layout did.
+   */
+  .nominee-row[data-density="compact"] .nominee-weight {
+    font-size: clamp(
+      8px,
+      min(
+        calc(var(--board-name-size) * 0.95),
+        calc(var(--weight-column) / (var(--weight-characters) * 0.62)),
+        calc(var(--row-content-height) * 0.48)
+      ),
+      60px
+    );
+  }
+
+  /*
+   * The percentage also gets the full column width.
+   */
+  .nominee-row[data-density="compact"] .nominee-percent {
+    font-size: clamp(
+      8px,
+      min(
+        calc(var(--board-name-size) * 0.6),
+        calc(var(--weight-column) / (var(--percent-characters) * 0.58 + 0.65)),
+        calc(var(--row-content-height) * 0.38)
+      ),
+      16px
+    );
+  }
+}

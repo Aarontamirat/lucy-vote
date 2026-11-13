@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/AaronT.LUCY/Desktop/voting-system/Latest/voting-app-latest/app/meetings/%5Bid%5D/reports/loading.tsx"],"sourcesContent":["\"use client\";\n\nimport { DNA } from \"react-loader-spinner\";\n\nexport default function Loading() {\n  return (\n    <div className=\"absolute top-0 left-0 right-0 bottom-0 bg-transparent\">\n      <div className=\"flex items-center justify-center h-full\">\n        <DNA\n          height={100}\n          width={100}\n          dnaColorOne=\"#27a9d9\"\n          dnaColorTwo=\"#c125e3\"\n          ariaLabel=\"ball-triangle-loading\"\n        />\n      </div>\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AAFA;;;AAIe,SAAS;IACtB,qBACE,6LAAC;QAAI,WAAU;kBACb,cAAA,6LAAC;YAAI,WAAU;sBACb,cAAA,6LAAC,sKAAG;gBACF,QAAQ;gBACR,OAAO;gBACP,aAAY;gBACZ,aAAY;gBACZ,WAAU;;;;;;;;;;;;;;;;AAKpB;KAdwB","debugId":null}}]
+}

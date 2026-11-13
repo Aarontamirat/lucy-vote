@@ -1,0 +1,413 @@
+/* [project]/app/meetings/[id]/attendance/live/page.module.css [app-client] (css) */
+.page-module__w_0ptW__projection {
+  color: #111827;
+  background: #fff;
+  min-height: 100vh;
+  padding: 32px 24px;
+  font-family: Arial, Helvetica, Noto Sans Ethiopic, sans-serif;
+  position: relative;
+}
+
+.page-module__w_0ptW__projection:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.page-module__w_0ptW__projection:fullscreen {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.page-module__w_0ptW__background, .page-module__w_0ptW__overlay {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-module__w_0ptW__background {
+  opacity: .15;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-module__w_0ptW__overlay {
+  background: #fff;
+}
+
+.page-module__w_0ptW__content {
+  z-index: 10;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.page-module__w_0ptW__content > * + * {
+  margin-top: 24px;
+}
+
+.page-module__w_0ptW__header {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.page-module__w_0ptW__logo {
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.page-module__w_0ptW__logo img {
+  object-fit: contain;
+  width: 192px;
+  height: auto;
+}
+
+.page-module__w_0ptW__heading {
+  text-align: center;
+  min-width: 0;
+}
+
+.page-module__w_0ptW__heading h1 {
+  color: rgba(0, 0, 0, 0);
+  background: linear-gradient(to right, #1d4ed8, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.page-module__w_0ptW__heading p {
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.page-module__w_0ptW__controls {
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.page-module__w_0ptW__fullscreenButton {
+  color: #1e3a8a;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: 2px solid #1e3a8a;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: background-color .15s, color .15s;
+  display: inline-flex;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
+}
+
+.page-module__w_0ptW__fullscreenButton:hover {
+  color: #dbeafe;
+  background: #1e3a8a;
+}
+
+.page-module__w_0ptW__fullscreenButton:focus-visible {
+  outline-offset: 3px;
+  outline: 3px solid #60a5fa;
+}
+
+.page-module__w_0ptW__content > .page-module__w_0ptW__gaugeSection {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
+  display: flex;
+  position: relative;
+}
+
+.page-module__w_0ptW__gauge {
+  width: 288px;
+  height: 288px;
+  position: relative;
+}
+
+.page-module__w_0ptW__gaugeGlow {
+  filter: blur(64px);
+  opacity: .25;
+  pointer-events: none;
+  background: linear-gradient(to right, #166534, #3b82f6, #166534);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-module__w_0ptW__quorumGlow {
+  background: linear-gradient(to right, #1e40af, #22c55e, #1e40af);
+}
+
+.page-module__w_0ptW__progressbar {
+  font-weight: 600;
+}
+
+.page-module__w_0ptW__centerGlow {
+  filter: blur(40px);
+  pointer-events: none;
+  background: rgba(147, 197, 253, .1);
+  border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+}
+
+.page-module__w_0ptW__quorumMessage {
+  color: #374151;
+  margin-top: 24px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.page-module__w_0ptW__quorumMet {
+  color: #15803d;
+}
+
+.page-module__w_0ptW__content > .page-module__w_0ptW__welcomes {
+  z-index: 50;
+  pointer-events: none;
+  margin-top: 0;
+  position: absolute;
+  top: 288px;
+  left: 20%;
+  transform: translateX(-50%);
+}
+
+.page-module__w_0ptW__welcome {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+}
+
+.page-module__w_0ptW__welcomeWave {
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-module__w_0ptW__welcomeMessage {
+  color: #fff;
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: rgba(0, 0, 0, .4);
+  padding: 16px 32px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.page-module__w_0ptW__content > .page-module__w_0ptW__stats {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  display: grid;
+}
+
+.page-module__w_0ptW__stat {
+  text-align: center;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, .2);
+  border: 2px solid #1e3a8a;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 8px 10px -6px rgba(0, 0, 0, .1);
+}
+
+.page-module__w_0ptW__stat p {
+  color: #2563eb;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.page-module__w_0ptW__stat strong {
+  color: #111827;
+  overflow-wrap: anywhere;
+  margin-top: 20px;
+  font-family: Consolas, Courier New, monospace;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  display: block;
+}
+
+.dark .page-module__w_0ptW__projection {
+  color: #f3f4f6;
+  background: linear-gradient(to right, #111827, #000, #111827);
+}
+
+.dark .page-module__w_0ptW__background {
+  opacity: .1;
+}
+
+.dark .page-module__w_0ptW__overlay {
+  background: rgba(0, 0, 0, .5);
+}
+
+.dark .page-module__w_0ptW__heading p {
+  color: #d1d5db;
+}
+
+.dark .page-module__w_0ptW__fullscreenButton {
+  color: #93c5fd;
+  border-color: #60a5fa;
+}
+
+.dark .page-module__w_0ptW__fullscreenButton:hover {
+  color: #dbeafe;
+  background: #1e3a8a;
+}
+
+.dark .page-module__w_0ptW__gaugeGlow {
+  opacity: .2;
+}
+
+.dark .page-module__w_0ptW__centerGlow {
+  background: rgba(191, 219, 254, .1);
+}
+
+.dark .page-module__w_0ptW__quorumMessage:not(.page-module__w_0ptW__quorumMet) {
+  color: #e5e7eb;
+}
+
+.dark .page-module__w_0ptW__welcomeMessage {
+  background: rgba(255, 255, 255, .2);
+}
+
+.dark .page-module__w_0ptW__stat {
+  background: rgba(0, 0, 0, .3);
+  border-color: #60a5fa;
+}
+
+.dark .page-module__w_0ptW__stat p {
+  color: #93c5fd;
+}
+
+.dark .page-module__w_0ptW__stat strong {
+  color: #f3f4f6;
+}
+
+@media (min-width: 768px) {
+  .page-module__w_0ptW__header {
+    flex-flow: wrap;
+    column-gap: max(24px, min(6vw, 112px));
+  }
+
+  .page-module__w_0ptW__heading h1 {
+    font-size: 60px;
+    line-height: 1;
+  }
+
+  .page-module__w_0ptW__heading p {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .page-module__w_0ptW__controls {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .page-module__w_0ptW__gauge {
+    width: 384px;
+    height: 384px;
+  }
+
+  .page-module__w_0ptW__content > .page-module__w_0ptW__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-module__w_0ptW__stat p {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-module__w_0ptW__stat p {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .page-module__w_0ptW__stat strong {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-module__w_0ptW__header {
+    column-gap: 112px;
+  }
+
+  .page-module__w_0ptW__content > .page-module__w_0ptW__stats {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .page-module__w_0ptW__stat strong {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-module__w_0ptW__content > .page-module__w_0ptW__welcomes {
+    width: calc(100vw - 48px);
+    left: 50%;
+  }
+
+  .page-module__w_0ptW__welcomeMessage {
+    overflow-wrap: anywhere;
+    padding: 12px 20px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+/*# sourceMappingURL=app_meetings_%5Bid%5D_attendance_live_page_module_css_bad6b30c._.single.css.map*/

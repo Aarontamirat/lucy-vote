@@ -1,0 +1,404 @@
+.clock {
+  --face-size: clamp(100px, 21.875vw, 200px);
+  --anchor-size: 100px;
+  --orbit-gap: 14px;
+  --side-gap: 24px;
+  --dial-highlight: #fff;
+  --dial-base: #e7eef7;
+  --dial-ink: #143253;
+  --dial-line: #bfd0e2;
+  --hand-highlight: #3b6989;
+  --hand-ink: #102d4a;
+  --second-ink: #098c76;
+  /* Give the watch its own presentation space beside the unchanged quorum ring. */
+  position: absolute;
+  left: calc(100% + var(--side-gap));
+  top: calc(50% - var(--face-size) / 2);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: max-content;
+  text-align: left;
+  pointer-events: none;
+  color: #153555;
+  animation: clock-arrive 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.clock::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--side-gap));
+  top: calc(var(--face-size) / 2);
+  width: var(--side-gap);
+  border-top: 1px dashed #2a978c70;
+  transform-origin: left center;
+}
+.watch {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--face-size);
+  height: var(--face-size);
+  overflow: clip;
+  overflow-clip-margin: 12px;
+}
+.halo {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 45deg,
+    #397afa00,
+    #397afa35,
+    #1aa88935,
+    #397afa00
+  );
+  filter: blur(9px);
+  animation: bezel-orbit 16s linear infinite;
+}
+.bezel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border: 1px solid #a4bccb;
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    #fff 5%,
+    #b3c8d6 28%,
+    #f4f8fb 45%,
+    #94acbd 75%,
+    #e4edf3
+  );
+  box-shadow:
+    0 10px 22px #163c6123,
+    inset 0 1px 2px #fff;
+}
+.face {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px #183b5718,
+    inset 0 2px 5px #0b30412a;
+}
+.windingCrown {
+  position: absolute;
+  right: -4px;
+  top: 43%;
+  width: 5px;
+  height: 14%;
+  border: 1px solid #8da4b6;
+  border-radius: 2px;
+  background: repeating-linear-gradient(0deg, #8fa5b7 0 1px, #dbe7ed 1px 3px);
+  z-index: -1;
+}
+.innerRing {
+  fill: none;
+  stroke: var(--dial-line);
+  stroke-width: 0.7;
+  opacity: 0.55;
+}
+.minuteMark {
+  stroke: var(--dial-line);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.hourMark {
+  stroke: var(--dial-ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.numeral {
+  fill: var(--dial-ink);
+  font:
+    700 21px Arial,
+    sans-serif;
+  text-anchor: middle;
+}
+.dialLabel {
+  fill: var(--second-ink);
+  font:
+    700 9px Arial,
+    sans-serif;
+  text-anchor: middle;
+  letter-spacing: 4px;
+}
+.dialWindow {
+  fill: var(--dial-line);
+  fill-opacity: 0.32;
+  stroke: var(--dial-line);
+  stroke-width: 0.5;
+}
+.dialTime {
+  fill: var(--dial-ink);
+  font:
+    700 16px Arial,
+    sans-serif;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+}
+.hand {
+  transform-origin: 120px 120px;
+  animation: hand-sweep linear infinite;
+  animation-delay: var(--hand-delay);
+}
+.hourHand {
+  animation-duration: 43200s;
+}
+.minuteHand {
+  animation-duration: 3600s;
+}
+.secondHand {
+  animation-duration: 60s;
+  stroke: var(--second-ink);
+  stroke-width: 2;
+  fill: var(--dial-base);
+}
+.handInset {
+  stroke: #94ded0;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.pivot {
+  fill: var(--hand-ink);
+  stroke: #d7e9ef;
+  stroke-width: 1;
+}
+.reflection {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+.readout {
+  min-width: 190px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font:
+    700 21px Arial,
+    sans-serif;
+  letter-spacing: 1.35px;
+  color: #38756c;
+}
+.liveDot {
+  width: 4px;
+  height: 4px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #139c7c;
+  box-shadow: 0 0 0 3px #139c7c13;
+  animation: clock-breathe 3s ease-in-out infinite;
+}
+.zone {
+  margin-left: 2px;
+  border: 1px solid #6b9b9a40;
+  padding: 2px 3px;
+  border-radius: 4px;
+  font-size: 20px;
+  letter-spacing: 0.6px;
+}
+.time {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 4px;
+  font:
+    700 74px/1.15 Arial,
+    sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1.3px;
+  white-space: nowrap;
+}
+.colon {
+  color: #508b9e;
+  animation: clock-breathe 2s ease-in-out infinite;
+}
+.seconds {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  width: 35px;
+  overflow: hidden;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #207c83;
+}
+.seconds > span {
+  display: block;
+}
+.date {
+  margin-top: 4px;
+  color: #627b8d;
+  font:
+    500 22px Arial,
+    sans-serif;
+  letter-spacing: 0.4px;
+}
+:global(.dark) .clock {
+  --dial-highlight: #15374b;
+  --dial-base: #071722;
+  --dial-ink: #c9e8f5;
+  --dial-line: #47738b;
+  --hand-highlight: #f1fbff;
+  --hand-ink: #afcddd;
+  --second-ink: #5ce7c1;
+  color: #e2f3fb;
+}
+:global(.dark) .bezel {
+  border-color: #54798b;
+  background: linear-gradient(
+    145deg,
+    #98bbc7,
+    #294557 28%,
+    #8bacbb 45%,
+    #1b3648 75%,
+    #527a8a
+  );
+  box-shadow:
+    0 8px 24px #0008,
+    0 0 18px #1dab9715,
+    inset 0 1px 2px #c6e4e9a0;
+}
+:global(.dark) .eyebrow {
+  color: #8edaca;
+}
+:global(.dark) .zone {
+  border-color: #8edaca40;
+}
+:global(.dark) .seconds {
+  color: #77d7d2;
+}
+:global(.dark) .date {
+  color: #8da9ba;
+}
+:global(.dark) .clock::before {
+  border-color: #76d9c460;
+}
+:global(.dark) .reflection {
+  opacity: 0.18;
+}
+@keyframes hand-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bezel-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes clock-breathe {
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes clock-arrive {
+  from {
+    opacity: 0;
+    transform: translate(6px, -6px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+@media (min-width: 1024px) and (max-width: 1599px) {
+  .clock {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .readout {
+    text-align: center;
+  }
+  .eyebrow,
+  .time {
+    justify-content: center;
+  }
+}
+@media (max-width: 1023px) {
+  .clock {
+    --face-size: 100px;
+    gap: 10px;
+    left: calc(
+      50% + (50% + var(--anchor-size) / 2 + var(--orbit-gap)) * 0.707107 -
+        var(--anchor-size) / 2
+    );
+    top: calc(
+      50% - (50% + var(--anchor-size) / 2 + var(--orbit-gap)) * 0.707107 -
+        var(--anchor-size) / 2
+    );
+  }
+  .clock::before {
+    left: calc(var(--face-size) * 0.146447);
+    top: calc(var(--face-size) * 0.853553);
+    width: var(--orbit-gap);
+    transform: rotate(135deg);
+  }
+  .readout {
+    min-width: 115px;
+  }
+  .time {
+    font-size: 36px;
+  }
+  .eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+  .zone {
+    font-size: 8px;
+  }
+  .seconds {
+    width: 25px;
+    font-size: 18px;
+  }
+  .date {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .clock {
+    --face-size: 72px;
+    --anchor-size: 72px;
+    --orbit-gap: 12px;
+  }
+  .halo {
+    inset: -3px;
+    filter: blur(6px);
+  }
+  .readout {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .bezel {
+    padding: 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clock,
+  .halo,
+  .hand,
+  .liveDot,
+  .colon {
+    animation: none;
+  }
+  .hand {
+    transform: rotate(var(--hand-angle));
+  }
+}
