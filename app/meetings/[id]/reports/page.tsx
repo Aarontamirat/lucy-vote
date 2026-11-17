@@ -27,7 +27,8 @@ export default function Reports() {
             <h2>Attendance report</h2>
             <p>
               View registered shareholders, representation, share values, and
-              quorum. Download a PDF for your meeting records.
+              quorum. Filter and sort attendance, then export matching records
+              to PDF or Excel.
             </p>
             <span>
               Open attendance report
